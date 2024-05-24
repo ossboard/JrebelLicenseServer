@@ -3,56 +3,48 @@
 A license server for Jrebel & JetBrains products, it also support JRebel for Android and XRebel.
 
 ***
-Thank ilanyu
 
 NOTE: This is provided for educational purposes only. Please support genuine.
 ***
 ## Setup
-Run:
-```
-cd /path/to/project
-mvn compile 
-mvn exec:java -Dexec.mainClass="com.delpast.server.MainServer" -Dexec.args="-p 8081"
-```
+
 Packing a runnable jar:
 ```
-mvn package
+./gradlew shadowJar
 ```
 then
 ```
-java -jar JrebelBrainsLicenseServerforJava-1.0-SNAPSHOT.jar -p 8081
+java -jar JrebelBrainsLicenseServerforJava-1.0-SNAPSHOT-all.jar -p 8080
 ```
 default port is 8081.
 
 Or use gradle
 ```
-gradle shadowJar
-
-java -jar JrebelBrainsLicenseServerforJava-1.0-SNAPSHOT.jar -p 8081
+./gradlew shadowJar
+java -jar JrebelBrainsLicenseServerforJava-1.0-SNAPSHOT-all.jar -p 8080
 ```
+
 ## Docker
 Build image
 ```
-mvn package 
-docker build -t jrebel-ls .
+./gradlew shadowJar 
+docker build -t jrebel-lic:1.0 .
+
 ```
 
 start container
 ```
-docker run -d --name jrebel-ls --restart always -e PORT=9001 -p 9001:9001 jrebel-ls
+cd IMAGE
+sh startup.sh up
+또는
+docker run -d --name 5901-jrebel-lic --restart always -e PORT=5901 -p 5901:8080 jrebel-lic:1.0
+삭제
+docker stop 5901-jrebel-lic && docker rm  5901-jrebel-lic
 ```
-default port is 8081,you can modify it
+default port is 8080,you can modify it
 ## Support
 
 Jrebel
-
 JRebel for Android
-
 XRebel
-
 JetBrains Products
-
-## Feedback
-
-+ issue: https://gitee.com/gsls200808/JrebelLicenseServerforJava/issues
-+ QQ Group: 527290836

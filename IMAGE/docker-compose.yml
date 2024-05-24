@@ -1,0 +1,15 @@
+version: '3'
+services:
+  jrebel:
+    image: jrebel-lic:1.0
+    container_name: 5901-jrebel-lic
+    privileged: false
+    ports:
+      - 5901:8080
+    restart: always
+    networks:
+      net:
+networks:
+  net:
+    ipam:
+      driver: default
